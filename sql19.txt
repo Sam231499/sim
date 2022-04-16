@@ -1,0 +1,72 @@
+select r.name region,s.name sales  , a.name accounts
+from accounts a
+join sales_reps s
+on a.sales_rep_id = s.id
+join region r
+on s.region_id = r.id
+where r.name = 'Midwest'
+order by a.name asc
+
+
+
+select r.name region,s.name sales  , a.name accounts
+from accounts a
+join sales_reps s
+on a.sales_rep_id = s.id
+join region r
+on s.region_id = r.id
+where  r.name = 'Midwest' and s.name like 'S%' 
+order by a.name asc
+
+
+
+select r.name region,s.name sales  , a.name accounts
+from accounts a
+join sales_reps s
+on a.sales_rep_id = s.id
+join region r
+on s.region_id = r.id
+where r.name = 'Midwest' and s.name like '% K%' 
+order by a.name asc
+
+
+
+select r.name region, a.name accounts, o.total_amt_usd/o.total+0.01 unit_price
+from orders o
+join accounts a
+on o.account_id = a.id
+join sales_reps s
+on a.sales_rep_id = s.id
+join region r
+on s.region_id = r.id
+where o.standard_qty > 100
+order by o.id
+
+
+
+selectr.name region, a.name accounts, o.total_amt_usd/o.total+0.01 unit_price
+from orders o
+join accounts a
+on o.account_id = a.id
+join sales_reps s
+on a.sales_rep_id = s.id
+join region r
+on s.region_id = r.id
+where o.standard_qty > 100 and o.poster_qty > 50
+order by unit_price desc 
+
+
+
+select distinct w.channel channels, a.name account_name
+from web_events w
+join accounts a
+on w.account_id = a.id
+where a.id = '1001'
+
+
+
+select o.occurred_at, a.name account_name, o.total order_total, o.total_amt_usd order_total_amt_usd
+from orders o 
+join accounts a
+on o.account_id = a.id
+where o.occurred_at like '2015'
